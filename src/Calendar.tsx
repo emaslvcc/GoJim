@@ -13,6 +13,7 @@ const Calendar = () => {
   const [selectedDay, setSelectedDay] = useState<Date | null>(null);
   const [showEventModal, setShowEventModal] = useState(false);
   const [events, setEvents] = useState<Event[]>([]);
+  const [showWorkoutModal, setShowWorkoutModal] = useState(false);
 
   const daysInMonth = new Date(currentDate.getFullYear(), currentDate.getMonth() + 1, 0).getDate();
 
@@ -27,6 +28,15 @@ const Calendar = () => {
   const handleSaveEvent = (newEvent: Omit<Event, 'id'>) => {
     setEvents([...events, { ...newEvent, id: Date.now() }]);
     setShowEventModal(false);
+  };
+
+  const handleAddWorkout = () => {
+    setShowWorkoutModal(true);
+  };
+
+  const handleSaveWorkout = (newWorkout: Omit<Event, 'id'>) => {
+    setEvents([...events, { ...newWorkout, id: Date.now() }]);
+    setShowWorkoutModal(false);
   };
 
   const eventsForSelectedDay = events.filter(event => {
@@ -83,7 +93,6 @@ const Calendar = () => {
 
       <div className="event-section">
         <h3>Today | {selectedDay ? formatDate(selectedDay) : "Select a date"}</h3>
-        <button className="event-button" onClick={handleAddEvent}>+ Event</button>
         <div className="event-list-container">
           <div className="event-list">
             {eventsForSelectedDay.map(event => (
@@ -91,12 +100,21 @@ const Calendar = () => {
             ))}
           </div>
         </div>
+        <button className="event-button" onClick={handleAddEvent}>+ Event</button>
+        <button className="event-button workout-button" onClick={handleAddWorkout}>+ Workout</button>
       </div>
 
       {showEventModal && (
         <EventModal 
           onClose={() => setShowEventModal(false)} 
           onSave={handleSaveEvent}
+          selectedDate={selectedDay ? selectedDay.toISOString().split('T')[0] : ''}
+        />
+      )}
+      {showWorkoutModal && (
+        <WorkoutModal 
+          onClose={() => setShowWorkoutModal(false)} 
+          onSave={handleSaveWorkout}
           selectedDate={selectedDay ? selectedDay.toISOString().split('T')[0] : ''}
         />
       )}
@@ -167,13 +185,54 @@ const EventModal: React.FC<EventModalProps> = ({ onClose, onSave, selectedDate }
   );
 };
 
-const WorkoutModal: React.FC<ModalProps> = ({ onClose }) => {
+const WorkoutModal: React.FC<EventModalProps> = ({ onClose, onSave, selectedDate }) => {
+  const [date, setDate] = useState(selectedDate);
+  const [time, setTime] = useState('');
+  const [name, setName] = useState('');
+
+  const handleSubmit = (e: React.FormEvent) => {
+    e.preventDefault();
+    onSave({ date, time, name });
+  };
+
   return (
     <div className="modal">
       <div className="modal-content">
         <h2>Add New Workout</h2>
-        {/* Add form fields for workout details */}
-        <button onClick={onClose}>Close</button>
+        <form onSubmit={handleSubmit}>
+          <div>
+            <label htmlFor="date">Date:</label>
+            <input
+              type="date"
+              id="date"
+              value={date}
+              onChange={(e) => setDate(e.target.value)}
+              required
+            />
+          </div>
+          <div>
+            <label htmlFor="time">Time:</label>
+            <input
+              type="time"
+              id="time"
+              value={time}
+              onChange={(e) => setTime(e.target.value)}
+              required
+            />
+          </div>
+          <div>
+            <label htmlFor="name">Workout Name:</label>
+            <input
+              type="text"
+              id="name"
+              value={name}
+              onChange={(e) => setName(e.target.value)}
+              required
+            />
+          </div>
+          <button type="submit">Save Workout</button>
+          <button type="button" onClick={onClose}>Cancel</button>
+        </form>
       </div>
     </div>
   );

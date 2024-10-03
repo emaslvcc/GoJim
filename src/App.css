@@ -2,8 +2,8 @@
   display: flex;
   justify-content: space-around;
   padding: 0.5rem;
-  background-color: #f0f0f0;
-  border-top: 1px solid #ccc;
+  background-color: #c7dae6;
+  border-top: 1px solid #c7dae6;
   position: fixed;
   bottom: 0;
   left: 0;
@@ -39,4 +39,5 @@
   flex: 1;
   padding: 1rem;
   overflow-y: auto;
+  background-color: #c7dae6;
 }

@@ -5,7 +5,6 @@ import Calendar from './Calendar';
 import People from './People';
 import Profile from './Profile';
 import Workout from './Workout';
-import StatusBar from './StatusBar';
 
 import { ReactComponent as CalendarIcon } from './symbols/calendar_inactive.svg';
 import { ReactComponent as WorkoutIcon } from './symbols/exercise_inactive.svg';
@@ -32,7 +31,6 @@ const App = () => {
 
   return (
     <div id="root">
-      <StatusBar /> {/* New StatusBar component */}
       <div className="content">
         {renderContent()}
       </div>

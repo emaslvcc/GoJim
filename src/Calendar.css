@@ -2,6 +2,7 @@
     display: flex;
     flex-direction: column;
     min-height: 100vh;
+    color: #354652;
 }
 
 .calendar {
@@ -16,7 +17,8 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    background-color: #f0f0f0;
+    background-color: #bfb0c1;
+    color: #354652;
     cursor: pointer;
     border-radius: 50%;
 }
@@ -31,8 +33,7 @@
     flex-direction: column;
     height: 30vh;
     min-height: 200px;
-    background-color: #ffffff;
-    border-top: 1px solid #e0e0e0;
+    border-top: 1px solid #c7dae6;
 }
 
 .event-section h3 {
@@ -41,7 +42,6 @@
 }
 
 .event-list-container {
-    flex-grow: 1;
     overflow-y: auto;
     padding: 0 10px;
 }
@@ -57,11 +57,12 @@
 .event-button {
     margin: 10px;
     padding: 10px;
-    background-color: #007bff;
+    background-color: #bfb0c1;
     color: white;
     border: none;
     border-radius: 5px;
     cursor: pointer;
+    text-align: left;
 }
 
 .event-button:hover {
@@ -69,7 +70,7 @@
 }
 
 .workout-button {
-    background-color: #10b981;
+    background-color: #354652;
 }
 
 .workout-button:hover {
@@ -117,15 +118,14 @@
 
 .today-button {
     padding: 5px 10px;
-    background-color: #28a745;
-    color: white;
+    background-color: #bfb0c1;
     border: none;
     border-radius: 5px;
     cursor: pointer;
 }
 
 .today-button:hover {
-    background-color: #218838;
+    background-color: #bfb0c1;
 }
 
 .calendar-navigation {
@@ -134,17 +134,15 @@
     justify-content: center;
 }
 
-.calendar-navigation button,
-.today-button {
+.calendar-navigation button {
     padding: 5px 10px;
-    background-color: #007bff;
+    background-color: #354652;
     color: white;
     border: none;
     border-radius: 5px;
     cursor: pointer;
 }
 
-.calendar-navigation button:hover,
-.today-button:hover {
+.calendar-navigation button:hover {
     background-color: #0056b3;
 }
