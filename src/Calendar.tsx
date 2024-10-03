@@ -125,10 +125,6 @@ const Calendar = () => {
   );
 };
 
-interface ModalProps {
-  onClose: () => void;
-}
-
 interface EventModalProps {
   onClose: () => void;
   onSave: (event: Omit<Event, 'id'>) => void;
