@@ -1,4 +1,3 @@
-/* Bottom Navigation Bar */
 .bottom-nav {
   display: flex;
   justify-content: space-around;
@@ -28,7 +27,6 @@
   height: 1.5rem;
 }
 
-/* Adjust main content to account for fixed bottom nav */
 #root {
   display: flex;
   flex-direction: column;
@@ -42,5 +40,3 @@
   padding: 1rem;
   overflow-y: auto;
 }
-
-/* Add more responsive styles for your calendar, workout, friends, and profile components */

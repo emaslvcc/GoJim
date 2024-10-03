@@ -1,13 +1,14 @@
-/* Calendar Section */
 .calendar-container {
-    padding: 16px;
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
 }
 
 .calendar {
     display: grid;
     grid-template-columns: repeat(7, 1fr);
-    gap: 10px;
-    margin-bottom: 16px;
+    gap: 5px;
+    padding: 10px;
 }
 
 .calendar-day {
@@ -25,40 +26,46 @@
     color: white;
 }
 
-/* Event Section */
 .event-section {
-    margin-top: 16px;
     display: flex;
     flex-direction: column;
-    gap: 10px;
+    height: 30vh;
+    min-height: 200px;
+    background-color: #ffffff;
+    border-top: 1px solid #e0e0e0;
 }
 
-.event {
-    background-color: #e0e7ff;
-    padding: 8px 12px;
-    border-radius: 6px;
-    margin-bottom: 8px;
-}
-
-.event-button,
-.workout-button {
-    padding: 12px 24px;
-    background-color: #3b82f6;
-    color: white;
-    border: none;
-    border-radius: 25px;
-    font-size: 16px;
-    font-weight: bold;
-    cursor: pointer;
-    transition: background-color 0.3s;
-    width: 100%;
-    max-width: 200px;
+.event-section h3 {
+    padding: 10px;
     margin: 0;
 }
 
-.event-button:hover,
-.workout-button:hover {
-    background-color: #2563eb;
+.event-list-container {
+    flex-grow: 1;
+    overflow-y: auto;
+    padding: 0 10px;
+}
+
+.event-list {
+    padding-bottom: 10px;
+}
+
+.event {
+    margin-bottom: 5px;
+}
+
+.event-button {
+    margin: 10px;
+    padding: 10px;
+    background-color: #007bff;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.event-button:hover {
+    background-color: #0056b3;
 }
 
 .workout-button {
@@ -80,35 +87,64 @@
     justify-content: center;
     align-items: center;
     z-index: 1000;
-  }
-  
-  .modal-content {
+}
+
+.modal-content {
     background-color: white;
     padding: 20px;
     border-radius: 5px;
     width: 300px;
     max-height: 80vh;
     overflow-y: auto;
-  }
-  .modal-content form {
+}
+
+.calendar-header {
+    padding: 10px;
     display: flex;
     flex-direction: column;
+    align-items: center;
     gap: 10px;
-    margin-right: 12px;
-    margin-left: 4px;
-  }
-  
-  .modal-content label {
-    font-weight: bold;
-  }
-  
-  .modal-content input {
-    width: 100%;
-    padding: 5px;
-    margin-top: 5px;
-  }
-  
-  .modal-content button {
+    background-color: transparent;
+}
+
+.calendar-title {
+    text-align: center;
+}
+
+.calendar-title h2 {
+    margin: 0;
+}
+
+.today-button {
     padding: 5px 10px;
-    margin-right: 100px;
-  }
+    background-color: #28a745;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.today-button:hover {
+    background-color: #218838;
+}
+
+.calendar-navigation {
+    display: flex;
+    gap: 10px;
+    justify-content: center;
+}
+
+.calendar-navigation button,
+.today-button {
+    padding: 5px 10px;
+    background-color: #007bff;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.calendar-navigation button:hover,
+.today-button:hover {
+    background-color: #0056b3;
+}

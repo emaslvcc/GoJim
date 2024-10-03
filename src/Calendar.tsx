@@ -1,6 +1,5 @@
-// Calendar.tsx
 import React, { useState } from "react";
-import "./Calendar.css"; // Importing the corresponding CSS file
+import "./Calendar.css";
 
 interface Event {
   id: number;
@@ -10,23 +9,19 @@ interface Event {
 }
 
 const Calendar = () => {
-  const [selectedDay, setSelectedDay] = useState<number | null>(null);
+  const [currentDate, setCurrentDate] = useState(new Date());
+  const [selectedDay, setSelectedDay] = useState<Date | null>(null);
   const [showEventModal, setShowEventModal] = useState(false);
-  const [showWorkoutModal, setShowWorkoutModal] = useState(false);
   const [events, setEvents] = useState<Event[]>([]);
 
-  const daysInMonth = Array.from({ length: 31 }, (_, index) => index + 1);
+  const daysInMonth = new Date(currentDate.getFullYear(), currentDate.getMonth() + 1, 0).getDate();
 
   const handleDayClick = (day: number) => {
-    setSelectedDay(day);
+    setSelectedDay(new Date(currentDate.getFullYear(), currentDate.getMonth(), day));
   };
 
   const handleAddEvent = () => {
     setShowEventModal(true);
-  };
-
-  const handleAddWorkout = () => {
-    setShowWorkoutModal(true);
   };
 
   const handleSaveEvent = (newEvent: Omit<Event, 'id'>) => {
@@ -34,42 +29,76 @@ const Calendar = () => {
     setShowEventModal(false);
   };
 
-  const eventsForSelectedDay = events.filter(
-    event => event.date === `2023-09-${selectedDay?.toString().padStart(2, '0')}`
-  );
+  const eventsForSelectedDay = events.filter(event => {
+    if (!selectedDay) return false;
+    const eventDate = new Date(event.date);
+    return (
+      eventDate.getDate() === selectedDay.getDate() &&
+      eventDate.getMonth() === selectedDay.getMonth() &&
+      eventDate.getFullYear() === selectedDay.getFullYear()
+    );
+  });
+
+  const renderCalendarDays = () => {
+    const days = [];
+    for (let i = 1; i <= daysInMonth; i++) {
+      const dayDate = new Date(currentDate.getFullYear(), currentDate.getMonth(), i);
+      days.push(
+        <div
+          key={i}
+          className={`calendar-day ${selectedDay && selectedDay.getTime() === dayDate.getTime() ? 'selected' : ''}`}
+          onClick={() => handleDayClick(i)}
+        >
+          {i}
+        </div>
+      );
+    }
+    return days;
+  };
+
+  const formatDate = (date: Date) => {
+    return `${date.toLocaleString('default', { month: 'long' })} ${date.getDate()}, ${date.getFullYear()}`;
+  };
+
+  const goToToday = () => {
+    setCurrentDate(new Date());
+    setSelectedDay(new Date());
+  };
 
   return (
     <div className="calendar-container">
+      <div className="calendar-header">
+        <div className="calendar-title">
+          <h2>{currentDate.toLocaleString('default', { month: 'long', year: 'numeric' })}</h2>
+        </div>
+        <div className="calendar-navigation">
+          <button className="today-button" onClick={goToToday}>Today</button>
+          <button onClick={() => setCurrentDate(new Date(currentDate.getFullYear(), currentDate.getMonth() - 1, 1))}>Previous</button>
+          <button onClick={() => setCurrentDate(new Date(currentDate.getFullYear(), currentDate.getMonth() + 1, 1))}>Next</button>
+        </div>
+      </div>
       <div className="calendar">
-        {daysInMonth.map((day) => (
-          <div
-            key={day}
-            className={`calendar-day ${selectedDay === day ? "selected" : ""}`}
-            onClick={() => handleDayClick(day)}
-          >
-            {day}
-          </div>
-        ))}
+        {renderCalendarDays()}
       </div>
 
       <div className="event-section">
-        <h3>Today | {selectedDay ? `September ${selectedDay}` : "Select a date"}</h3>
-        {eventsForSelectedDay.map(event => (
-          <div key={event.id} className="event">{event.time} - {event.name}</div>
-        ))}
+        <h3>Today | {selectedDay ? formatDate(selectedDay) : "Select a date"}</h3>
         <button className="event-button" onClick={handleAddEvent}>+ Event</button>
-        <button className="event-button" onClick={handleAddWorkout}>+ Workout</button>
+        <div className="event-list-container">
+          <div className="event-list">
+            {eventsForSelectedDay.map(event => (
+              <div key={event.id} className="event">{event.time} - {event.name}</div>
+            ))}
+          </div>
+        </div>
       </div>
 
       {showEventModal && (
         <EventModal 
           onClose={() => setShowEventModal(false)} 
           onSave={handleSaveEvent}
-          selectedDate={selectedDay ? `2023-09-${selectedDay.toString().padStart(2, '0')}` : ''}
+          selectedDate={selectedDay ? selectedDay.toISOString().split('T')[0] : ''}
         />
-      )}
-      {showWorkoutModal && (
-        <WorkoutModal onClose={() => setShowWorkoutModal(false)} />
       )}
     </div>
   );

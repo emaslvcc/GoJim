@@ -18,14 +18,7 @@ const App = () => {
   const renderContent = () => {
     switch (activeTab) {
       case 'calendar':
-        return (
-          <>
-            <div className="calendar-header">
-              {new Date().toLocaleString('default', { month: 'long', year: 'numeric' })}
-            </div>
-            <Calendar />
-          </>
-        );
+        return <Calendar/>;
       case 'workout':
         return <Workout/>;
       case 'friends':
