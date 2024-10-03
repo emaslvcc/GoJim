@@ -1,18 +1,21 @@
 import React, { useState } from 'react';
+import { BrowserRouter as Router, Route, Routes, useNavigate } from 'react-router-dom';
 import './App.css';
 
 import Calendar from './Calendar';
 import People from './People';
 import Profile from './Profile';
 import Workout from './Workout';
+import SeeWorkouts from './SeeWorkouts';
 
 import { ReactComponent as CalendarIcon } from './symbols/calendar.svg';
 import { ReactComponent as WorkoutIcon } from './symbols/exercise.svg';
 import { ReactComponent as FriendsIcon } from './symbols/group.svg';
 import { ReactComponent as ProfileIcon } from './symbols/profile.svg';
 
-const App = () => {
+const MainContent = () => {
   const [activeTab, setActiveTab] = useState('calendar');
+  const navigate = useNavigate();
 
   const renderContent = () => {
     switch (activeTab) {
@@ -30,26 +33,39 @@ const App = () => {
   };
 
   return (
-    <div id="root">
+    <>
       <div className="content">
         {renderContent()}
       </div>
 
       <div className="bottom-nav">
-        <button onClick={() => setActiveTab('calendar')} className={activeTab === 'calendar' ? 'active' : ''}>
+        <button onClick={() => { setActiveTab('calendar'); navigate('/'); }} className={activeTab === 'calendar' ? 'active' : ''}>
           <CalendarIcon />
         </button>
-        <button onClick={() => setActiveTab('workout')} className={activeTab === 'workout' ? 'active' : ''}>
+        <button onClick={() => { setActiveTab('workout'); navigate('/'); }} className={activeTab === 'workout' ? 'active' : ''}>
           <WorkoutIcon />
         </button>
-        <button onClick={() => setActiveTab('friends')} className={activeTab === 'friends' ? 'active' : ''}>
+        <button onClick={() => { setActiveTab('friends'); navigate('/'); }} className={activeTab === 'friends' ? 'active' : ''}>
           <FriendsIcon />
         </button>
-        <button onClick={() => setActiveTab('profile')} className={activeTab === 'profile' ? 'active' : ''}>
+        <button onClick={() => { setActiveTab('profile'); navigate('/'); }} className={activeTab === 'profile' ? 'active' : ''}>
           <ProfileIcon />
         </button>
       </div>
-    </div>
+    </>
+  );
+};
+
+const App = () => {
+  return (
+    <Router>
+      <div id="root">
+        <Routes>
+          <Route path="/" element={<MainContent />} />
+          <Route path="/see-workouts" element={<SeeWorkouts />} />
+        </Routes>
+      </div>
+    </Router>
   );
 };
 

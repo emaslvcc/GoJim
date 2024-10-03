@@ -130,3 +130,21 @@
   .start-btn:hover {
     background-color: #354652; /* This is the darker blue color */
   }
+  
+  .see-workouts-btn {
+    display: block;
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 15px;
+    background-color: #bfb0c1; /* Changed to match the START button color */
+    color: #FFFFFF;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    font-size: 16px;
+    transition: background-color 0.3s ease;
+  }
+  
+  .see-workouts-btn:hover {
+    background-color: #354652; /* Changed to match the START button hover color */
+  }
