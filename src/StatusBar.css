@@ -1,0 +1,55 @@
+/* ... existing styles ... */
+
+.status-bar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: #F3F4F6;
+    color: #000000;
+    padding: 5px 10px;
+    font-size: 14px;
+    font-weight: 600;
+    height: 20px;
+  }
+  
+  .status-bar span {
+    display: flex;
+    align-items: center;
+  }
+  
+  .status-bar .battery {
+    width: 20px;
+    height: 10px;
+    border: 1px solid #000000;
+    border-radius: 2px;
+    margin-left: 5px;
+    position: relative;
+  }
+  
+  .status-bar .battery::after {
+    content: '';
+    position: absolute;
+    top: 2px;
+    left: 2px;
+    width: 14px;
+    height: 6px;
+    background-color: #000000;
+  }
+  
+  .status-bar .battery::before {
+    content: '';
+    position: absolute;
+    top: 3px;
+    right: -4px;
+    width: 3px;
+    height: 4px;
+    background-color: #fff;
+  }
+  
+  /* Add this if you want to style the calendar header */
+  .calendar-header {
+    font-size: 18px;
+    font-weight: bold;
+    text-align: center;
+    padding: 10px 0;
+  }
