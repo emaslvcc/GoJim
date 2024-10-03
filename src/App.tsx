@@ -6,10 +6,10 @@ import People from './People';
 import Profile from './Profile';
 import Workout from './Workout';
 
-import { ReactComponent as CalendarIcon } from './symbols/calendar_inactive.svg';
-import { ReactComponent as WorkoutIcon } from './symbols/exercise_inactive.svg';
-import { ReactComponent as FriendsIcon } from './symbols/groups_inactive.svg';
-import { ReactComponent as ProfileIcon } from './symbols/profile_inactive.svg';
+import { ReactComponent as CalendarIcon } from './symbols/calendar.svg';
+import { ReactComponent as WorkoutIcon } from './symbols/exercise.svg';
+import { ReactComponent as FriendsIcon } from './symbols/group.svg';
+import { ReactComponent as ProfileIcon } from './symbols/profile.svg';
 
 const App = () => {
   const [activeTab, setActiveTab] = useState('calendar');

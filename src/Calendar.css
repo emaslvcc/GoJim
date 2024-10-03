@@ -57,8 +57,8 @@
 .event-button {
     margin: 10px;
     padding: 10px;
-    background-color: #bfb0c1;
-    color: white;
+    background-color: #354652;
+    color: #c9d4db;
     border: none;
     border-radius: 5px;
     cursor: pointer;
@@ -71,6 +71,7 @@
 
 .workout-button {
     background-color: #354652;
+    color: #c9d4db;
 }
 
 .workout-button:hover {
@@ -137,7 +138,7 @@
 .calendar-navigation button {
     padding: 5px 10px;
     background-color: #354652;
-    color: white;
+    color: #c9d4db;
     border: none;
     border-radius: 5px;
     cursor: pointer;
