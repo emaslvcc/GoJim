@@ -1,0 +1,132 @@
+.workout-section {
+    padding: 15px;
+    background-color: #c7dae6;
+    min-height: 100vh;
+    color: #FFFFFF;
+  }
+  
+  .header {
+    text-align: center;
+    padding: 5px 0;
+    background-color: #c7dae6;
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+    margin-bottom: 15px;
+  }
+  
+  .header h1 {
+    margin: 0;
+    font-size: 1.2rem;
+    color: #354652;
+  }
+  
+  .stats-container {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 15px;
+    gap: 15px; /* This adds space between the modules */
+  }
+  
+  .stats-module {
+    background-color: #354652;
+    padding: 15px;
+    border-radius: 10px; /* Increased from 8px to 12px for more rounded corners */
+    flex: 1; /* This allows the modules to grow equally */
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    color: #bfb0c1;
+  }
+  
+  .stats-icon {
+    width: 30px;
+    height: 30px;
+    margin-bottom: 5px;
+  }
+  
+  .stats-module h2 {
+    margin: 0;
+    font-size: 20px;
+  }
+  
+  .stats-module p {
+    margin: 3px 0 0;
+    font-size: 12px;
+  }
+  
+  .workout-plans-module {
+    background-color: #354652;
+    padding: 15px;
+    border-radius: 10px; /* Increased from 8px to 12px for more rounded corners */
+  }
+  
+  .workout-plans-module h2 {
+    margin-bottom: 15px;
+    color: #bfb0c1;
+    font-size: 18px;
+  }
+  
+  .workout-card {
+    margin-bottom: 15px;
+    background-color: #c7dae6;
+    padding: 15px;
+    border-radius: 10px;
+  }
+  
+  .workout-header {
+    display: flex;
+    align-items: center;
+    margin-bottom: 15px;
+  }
+  
+  .workout-symbol {
+    width: 30px;  /* Increased from 24px to 40px */
+    height: 30px; /* Increased from 24px to 40px */
+    margin-right: 10px;
+    border-radius: 6px; /* Added to give the symbol slightly rounded corners */
+  }
+  
+  .workout-card h3 {
+    margin: 0;
+    color: #354652; /* Updated color */
+    font-size: 18px; /* Increased from 18px to 24px */
+  }
+  
+  .buttons {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 10px;
+  }
+  
+  .see-details-btn,
+  .start-btn {
+    padding: 8px 15px;
+    border: none;
+    border-radius: 6px; /* Increased from 4px to 8px for more rounded corners */
+    cursor: pointer;
+    font-weight: bold;
+    width: 100%; /* Changed from 48% to 100% since it's the only button now */
+    transition: background-color 0.3s ease;
+    font-size: 14px; /* Added to match the larger overall scale */
+  }
+  
+  .see-details-btn {
+    background-color: #354652;
+    color: #FFFFFF;
+  }
+  
+  .start-btn {
+    background-color: #bfb0c1;
+    color: #FFFFFF;
+  }
+  
+  .see-details-btn:hover,
+  .start-btn:hover {
+    opacity: 0.9;
+  }
+  
+  .start-btn:hover {
+    background-color: #354652; /* This is the darker blue color */
+  }
