@@ -24,8 +24,8 @@
 }
 
 .calendar-day.selected {
-    background-color: #3b82f6;
-    color: white;
+    background-color: #354652;
+    color: #c7dae6;
 }
 
 .event-section {
@@ -66,7 +66,8 @@
 }
 
 .event-button:hover {
-    background-color: #0056b3;
+    background-color: #bfb0c1;
+    color: #354652;
 }
 
 .workout-button {
@@ -75,7 +76,8 @@
 }
 
 .workout-button:hover {
-    background-color: #059669;
+    background-color: #bfb0c1;
+    color: #354652;
 }
 
 .modal {
@@ -84,7 +86,7 @@
     left: 0;
     width: 100%;
     height: 100%;
-    background-color: rgba(0, 0, 0, 0.5);
+    background-color: #354652;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -92,7 +94,8 @@
 }
 
 .modal-content {
-    background-color: white;
+    background-color: #c9d4db;
+    color: #354652;
     padding: 20px;
     border-radius: 5px;
     width: 300px;
@@ -145,5 +148,14 @@
 }
 
 .calendar-navigation button:hover {
-    background-color: #0056b3;
+    background-color: #bfb0c1;
+    color: #354652;
+}
+
+.event.workout {
+    color: #354652;
+}
+
+.event.event {
+    color: #354652;
 }

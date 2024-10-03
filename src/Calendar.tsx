@@ -6,6 +6,7 @@ interface Event {
   date: string;
   time: string;
   name: string;
+  type: 'event' | 'workout'; // Add this line
 }
 
 const Calendar = () => {
@@ -26,7 +27,7 @@ const Calendar = () => {
   };
 
   const handleSaveEvent = (newEvent: Omit<Event, 'id'>) => {
-    setEvents([...events, { ...newEvent, id: Date.now() }]);
+    setEvents([...events, { ...newEvent, id: Date.now(), type: 'event' }]);
     setShowEventModal(false);
   };
 
@@ -35,7 +36,7 @@ const Calendar = () => {
   };
 
   const handleSaveWorkout = (newWorkout: Omit<Event, 'id'>) => {
-    setEvents([...events, { ...newWorkout, id: Date.now() }]);
+    setEvents([...events, { ...newWorkout, id: Date.now(), type: 'workout' }]);
     setShowWorkoutModal(false);
   };
 
@@ -96,7 +97,9 @@ const Calendar = () => {
         <div className="event-list-container">
           <div className="event-list">
             {eventsForSelectedDay.map(event => (
-              <div key={event.id} className="event">{event.time} - {event.name}</div>
+              <div key={event.id} className={`event ${event.type}`}>
+                {event.time} - {event.name} ({event.type})
+              </div>
             ))}
           </div>
         </div>
@@ -139,7 +142,7 @@ const EventModal: React.FC<EventModalProps> = ({ onClose, onSave, selectedDate }
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-    onSave({ date, time, name });
+    onSave({ date, time, name, type: 'event' });
   };
 
   return (
@@ -192,7 +195,7 @@ const WorkoutModal: React.FC<EventModalProps> = ({ onClose, onSave, selectedDate
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-    onSave({ date, time, name });
+    onSave({ date, time, name, type: 'workout' });
   };
 
   return (
